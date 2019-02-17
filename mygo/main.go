@@ -8,5 +8,5 @@ import (
 func main() {
 	//coroutine.CorotineTest()
 	//channel.MychannelTest()
-	channel.MychannelWithSelector()
+	channel.MychannelWithTraverse()
 }

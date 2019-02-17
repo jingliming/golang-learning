@@ -75,3 +75,66 @@ func MychannelWithSelector() {
 		}
 	}
 }
+
+// channel time expire
+func MychannelWithTimeExpire() {
+	c1 := make(chan string)
+	c2 := make(chan string)
+	go func() {
+		time.Sleep(time.Second * 2)
+		c1 <- "result 1"
+	}()
+	select {
+	case res := <-c1:
+		fmt.Println(res)
+	case <-time.After(time.Second * 2):
+		fmt.Println("result 1 timeout!!!")
+	}
+	go func() {
+		time.Sleep(time.Second * 2)
+		c2 <- "result 2"
+	}()
+	select {
+	case res := <-c2:
+		fmt.Println(res)
+	case <-time.After(time.Second * 1):
+		fmt.Println("result 2 timeout!!!")
+	}
+}
+
+//channel close
+func MychannelWithClose() {
+	jobs := make(chan int, 5)
+	done := make(chan bool)
+	go func() {
+		for {
+			j, more := <-jobs
+			if more {
+				fmt.Println("received job", j)
+			} else {
+				fmt.Println("received all jobs")
+				done <- true
+				return
+			}
+		}
+	}()
+	for j := 1; j <= 3; j++ {
+		jobs <- j
+		fmt.Println("send job", j)
+
+	}
+	close(jobs)
+	fmt.Println("send all jobs")
+	<-done
+}
+
+//channel traverse
+func MychannelWithTraverse() {
+	queue := make(chan string, 2)
+	queue <- "one"
+	queue <- "two"
+	close(queue)
+	for elem := range queue {
+		fmt.Println(elem)
+	}
+}
