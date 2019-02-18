@@ -1,7 +1,9 @@
 package main
 
 import (
-	"mygo/src/speedlimit"
+	"mygo/src/mutex"
+	//"mygo/src/atomiccounter"
+	//"mygo/src/speedlimit"
 	//"mygo/src/workpool"
 	//"mygo/src/ticker"
 	//"mygo/src/timer"
@@ -10,11 +12,14 @@ import (
 )
 
 func main() {
+	mutex.MyMutex()
 	//coroutine.CorotineTest()
 	//channel.MychannelTest()
 	//channel.MychannelWithTraverse()
 	//timer.Mytimer()
 	//ticker.Myticker()
 	//workpool.MyWorkPool()
-	speedlimit.MySpeedLimiter()
+	//speedlimit.MySpeedLimiter()
+	//atomiccounter.MyAutomicCounter()
+
 }
