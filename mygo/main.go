@@ -1,7 +1,8 @@
 package main
 
 import (
-	"mygo/src/mutex"
+	"mygo/src/statuscoroutine"
+	//"mygo/src/mutex"
 	//"mygo/src/atomiccounter"
 	//"mygo/src/speedlimit"
 	//"mygo/src/workpool"
@@ -12,7 +13,8 @@ import (
 )
 
 func main() {
-	mutex.MyMutex()
+	statuscoroutine.MyStatusCoroutine()
+	//mutex.MyMutex()
 	//coroutine.CorotineTest()
 	//channel.MychannelTest()
 	//channel.MychannelWithTraverse()
